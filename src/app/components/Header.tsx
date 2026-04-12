@@ -77,11 +77,80 @@ function Dropdown({
   );
 }
 
+function MobileDropdown({
+  label,
+  items,
+  active,
+  setActive,
+  onNavigate,
+}: {
+  label: string;
+  items: { name: string; path: string }[];
+  active: string | null;
+  setActive: (val: string | null) => void;
+  onNavigate: () => void;
+}) {
+  const isOpen = active === label;
+
+  return (
+    <div className="border-b border-[#e6eef8] last:border-b-0">
+      <button
+        type="button"
+        onClick={() => setActive(isOpen ? null : label)}
+        className="flex w-full items-center justify-between py-3 text-left font-medium text-[#002548] hover:text-[#0049ad]"
+      >
+        <span>{label}</span>
+        <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
+          <ChevronDown size={18} />
+        </motion.div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden pb-2"
+          >
+            {items.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={onNavigate}
+                className="block rounded-lg px-3 py-2 text-[#002548] transition hover:bg-[#f3f8ff] hover:text-[#0049ad]"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 /* ================= HEADER ================= */
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [mobileActiveMenu, setMobileActiveMenu] = useState<string | null>(null);
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setMobileActiveMenu(null);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileOpen((prev) => {
+      const next = !prev;
+      if (!next) {
+        setMobileActiveMenu(null);
+      }
+      return next;
+    });
+  };
 
   return (
     <motion.header
@@ -90,12 +159,12 @@ export function Header() {
       transition={{ duration: 0.4 }}
       className="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 font-poppins"
     >
-      <nav className="max-w-[1440px] mx-auto px-6 lg:px-[90px] py-4 gap-10 items-center">
+      <nav className="relative max-w-[1440px] mx-auto px-6 lg:px-[90px] py-4 gap-10 items-center">
 
         <div className="flex items-center justify-between">
 
           {/* Logo */}
-          <Link to="/">
+          <Link to="/" onClick={closeMobileMenu}>
             <motion.img
               src={logo}
               alt="Nithminds"
@@ -143,7 +212,10 @@ export function Header() {
           {/* Mobile Toggle */}
           <button
             className="lg:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            type="button"
+            onClick={toggleMobileMenu}
+            aria-expanded={mobileOpen}
+            aria-label="Toggle navigation menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -153,28 +225,60 @@ export function Header() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-4 pb-4 space-y-2 overflow-hidden font-poppins"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              className="absolute left-0 right-0 top-full z-50 mt-3 lg:hidden rounded-2xl border border-[#dce7f5] bg-white px-5 py-4 shadow-xl font-poppins"
             >
-              <Link to="/" className="block py-2 hover:text-[#0049ad]">Home</Link>
-              <Link to="/about-us" className="block py-2 hover:text-[#0049ad]">About Us</Link>
-              <Link to="/social-media" className="block py-2 hover:text-[#0049ad]">Social Media</Link>
-              <Link to="/clients" className="block py-2 hover:text-[#0049ad]">Clients</Link>
-              <p className="pt-2 text-sm font-semibold text-[#002548]">Software Development Services</p>
-              <Link to="/services/website-development" className="block py-2 pl-3 hover:text-[#0049ad]">Website Development</Link>
-              <Link to="/services/mobile-app-development" className="block py-2 pl-3 hover:text-[#0049ad]">Mobile App Development</Link>
-              <Link to="/services/cloud" className="block py-2 pl-3 hover:text-[#0049ad]">Cloud</Link>
-              <Link to="/services/devops" className="block py-2 pl-3 hover:text-[#0049ad]">DevOps</Link>
-              <Link to="/services/testing" className="block py-2 pl-3 hover:text-[#0049ad]">Testing</Link>
-              <p className="pt-2 text-sm font-semibold text-[#002548]">Other Services</p>
-              <Link to="/services/digital-marketing" className="block py-2 pl-3 hover:text-[#0049ad]">Digital Marketing</Link>
-              <Link to="/services/recruitment" className="block py-2 pl-3 hover:text-[#0049ad]">Recruitment</Link>
-              <Link to="/training" className="block py-2 pl-3 hover:text-[#0049ad]">Training</Link>
-              <Link to="/products" className="block py-2 hover:text-[#0049ad]">Products</Link>
-              <Link to="/updates" className="block py-2 hover:text-[#0049ad]">Gallery</Link>
-              <Link to="/contact" className="block py-2 hover:text-[#0049ad]">Contact</Link>
+              <div className="space-y-1">
+                <MobileDropdown
+                  label="Company"
+                  items={MENU.company}
+                  active={mobileActiveMenu}
+                  setActive={setMobileActiveMenu}
+                  onNavigate={closeMobileMenu}
+                />
+
+                <Link
+                  to="/clients"
+                  onClick={closeMobileMenu}
+                  className="block border-b border-[#e6eef8] py-3 font-medium text-[#002548] hover:text-[#0049ad]"
+                >
+                  Clients
+                </Link>
+
+                <MobileDropdown
+                  label="Software Development Services"
+                  items={MENU.services}
+                  active={mobileActiveMenu}
+                  setActive={setMobileActiveMenu}
+                  onNavigate={closeMobileMenu}
+                />
+
+                <MobileDropdown
+                  label="Other Services"
+                  items={MENU.otherServices}
+                  active={mobileActiveMenu}
+                  setActive={setMobileActiveMenu}
+                  onNavigate={closeMobileMenu}
+                />
+
+                <Link
+                  to="/products"
+                  onClick={closeMobileMenu}
+                  className="block border-b border-[#e6eef8] py-3 font-medium text-[#002548] hover:text-[#0049ad]"
+                >
+                  Products
+                </Link>
+
+                <Link
+                  to="/updates"
+                  onClick={closeMobileMenu}
+                  className="block py-3 font-medium text-[#002548] hover:text-[#0049ad]"
+                >
+                  Gallery
+                </Link>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

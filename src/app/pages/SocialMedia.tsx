@@ -1,11 +1,25 @@
 import {
   Instagram,
   Facebook,
-  Twitter,
   Youtube,
   Linkedin,
   ExternalLink,
 } from "lucide-react";
+import type { LucideProps } from "lucide-react";
+import type { ComponentType } from "react";
+
+function XIcon(props: LucideProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M18.244 2H21l-6.57 7.51L22 22h-5.956l-4.664-6.104L6.04 22H3.28l7.027-8.03L2 2h6.107l4.216 5.523zM17.277 20.348h1.527L7.278 3.565H5.64z" />
+    </svg>
+  );
+}
 
 const socials = [
   {
@@ -13,32 +27,43 @@ const socials = [
     url: "https://www.instagram.com/nithminds/",
     Icon: Instagram,
     accent: "from-[#ff6a00] to-[#ff1f7a]",
+    description: "Follow us on Instagram",
   },
   {
     label: "Facebook",
     url: "https://www.facebook.com/profile.php?id=61554978667187",
     Icon: Facebook,
     accent: "from-[#1877f2] to-[#0a4ebd]",
+    description: "Connect with us on Facebook",
   },
   {
-    label: "Twitter",
+    label: "X",
     url: "https://www.twitter.com/nithminds",
-    Icon: Twitter,
-    accent: "from-[#1d9bf0] to-[#0f5fae]",
+    Icon: XIcon,
+    accent: "from-[#111111] to-[#444444]",
+    description: "Follow us on X",
   },
   {
     label: "YouTube",
-    url: "https://www.youtube.com/channel/UC7aNSXs8Qi6H0nYyztOwKLQ",
+    url: "https://www.youtube.com/@nithmindspvtltd",
     Icon: Youtube,
     accent: "from-[#ff0033] to-[#c70026]",
+    description: "Watch us on YouTube",
   },
   {
     label: "LinkedIn",
     url: "https://www.linkedin.com/company/103766938",
     Icon: Linkedin,
     accent: "from-[#0a66c2] to-[#084785]",
+    description: "Connect with us on LinkedIn",
   },
-];
+] satisfies Array<{
+  label: string;
+  url: string;
+  Icon: ComponentType<LucideProps>;
+  accent: string;
+  description: string;
+}>;
 
 export function SocialMedia() {
   return (
@@ -74,8 +99,8 @@ export function SocialMedia() {
                 <p className="font-['Poppins:Bold',sans-serif] text-[#0049ad] text-[24px] mt-5">
                   {social.label}
                 </p>
-                <p className="font-['Poppins:Regular',sans-serif] text-[#515151] text-[14px] mt-2 break-all">
-                  {social.url}
+                <p className="font-['Poppins:Regular',sans-serif] text-[#515151] text-[14px] mt-2">
+                  {social.description}
                 </p>
               </a>
             ))}
