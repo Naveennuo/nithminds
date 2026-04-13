@@ -1,14 +1,28 @@
 ﻿import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { Facebook, Instagram, Twitter, Youtube, Linkedin, MapPin, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Youtube, Linkedin, MapPin, Mail, Phone } from "lucide-react";
+import type { LucideProps } from "lucide-react";
 
 const logo = new URL("../../assets/nithminds-logo.png", import.meta.url).href;
+
+function XIcon(props: LucideProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M18.244 2H21l-6.57 7.51L22 22h-5.956l-4.664-6.104L6.04 22H3.28l7.027-8.03L2 2h6.107l4.216 5.523zM17.277 20.348h1.527L7.278 3.565H5.64z" />
+    </svg>
+  );
+}
 
 const SOCIAL = [
   { Icon: Instagram, url: "https://www.instagram.com/nithminds/", label: "Instagram" },
   { Icon: Facebook, url: "https://www.facebook.com/profile.php?id=61554978667187", label: "Facebook" },
-  { Icon: Twitter, url: "https://www.twitter.com/nithminds", label: "Twitter" },
-  { Icon: Youtube, url: "https://www.youtube.com/channel/UC7aNSXs8Qi6H0nYyztOwKLQ", label: "YouTube" },
+  { Icon: XIcon, url: "https://www.twitter.com/nithminds", label: "X" },
+  { Icon: Youtube, url: "https://www.youtube.com/@nithmindspvtltd", label: "YouTube" },
   { Icon: Linkedin, url: "https://www.linkedin.com/company/103766938", label: "LinkedIn" },
 ];
 
