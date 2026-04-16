@@ -97,8 +97,8 @@ export function Contact() {
                   Madurai Office
                 </h3>
                 <p className="font-['Poppins:Regular',sans-serif] text-[#515151] text-[16px] leading-relaxed whitespace-pre-line">
-                  Nithminds Private Limited{"\n"}
-                  Madurai, Tamil Nadu
+                  No 7, Muthu Thevar Colony{"\n"}
+                  Virattipattu, Madurai 625016
                 </p>
               </motion.div>
             </div>
