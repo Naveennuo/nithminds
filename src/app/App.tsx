@@ -14,7 +14,7 @@ import { AIServices } from './pages/services/AIServices';
 import { DigitalMarketing } from './pages/services/DigitalMarketing';
 import { Recruitment } from './pages/services/Recruitment';
 import { Training } from './pages/Training';
-import { Updates } from './pages/Updates';
+import { Updates } from './pages/Gallery';
 import { Clients } from './pages/Clients';
 import { Products } from './pages/Products';
 import { SocialMedia } from './pages/SocialMedia';
