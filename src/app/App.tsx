@@ -10,6 +10,7 @@ import { MobileAppDevelopment } from './pages/services/MobileAppDevelopment';
 import { Cloud } from './pages/services/Cloud';
 import { DevOps } from './pages/services/DevOps';
 import { Testing } from './pages/services/Testing';
+import { AIServices } from './pages/services/AIServices';
 import { DigitalMarketing } from './pages/services/DigitalMarketing';
 import { Recruitment } from './pages/services/Recruitment';
 import { Training } from './pages/Training';
@@ -51,6 +52,7 @@ export default function App() {
             <Route path="cloud" element={<Cloud />} />
             <Route path="devops" element={<DevOps />} />
             <Route path="testing" element={<Testing />} />
+            <Route path="ai-services" element={<AIServices />} />
             <Route path="digital-marketing" element={<DigitalMarketing />} />
             <Route path="recruitment" element={<Recruitment />} />
           </Route>

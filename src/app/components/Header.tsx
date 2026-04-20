@@ -19,6 +19,7 @@ const MENU = {
     { name: "Cloud", path: "/services/cloud" },
     { name: "DevOps", path: "/services/devops" },
     { name: "Testing", path: "/services/testing" },
+    { name: "AI Services", path: "/services/ai-services" },
   ],
   otherServices: [
     { name: "Digital Marketing", path: "/services/digital-marketing" },
