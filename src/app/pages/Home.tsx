@@ -83,7 +83,7 @@ export function Home() {
         <div className="max-w-[1440px] mx-auto px-6 lg:px-[90px] py-12 grid lg:grid-cols-2 gap-10 items-center">
           <div className="anim-fade-left">
             <h1 className="font-extrabold text-[36px] sm:text-[44px] lg:text-[56px] leading-[1.1] bg-gradient-to-r from-[#0819ae] from-[1.554%] to-[#40aeff] via-[#0049ad] via-[54.689%] bg-clip-text text-transparent">
-              Web Development and Training Services That Grow Your Business
+              Elevate your business with AI-powered Application Development and Training Services
             </h1>
 
             <p className="mt-6 text-[#515151] text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.8] max-w-[600px] anim-delay-1">
