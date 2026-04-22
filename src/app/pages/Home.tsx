@@ -90,16 +90,16 @@ export function Home() {
               Nithminds delivers scalable digital products and industry-focused training programs for startups, enterprises, and academic institutions.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4 anim-delay-2">
+            <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-4 anim-delay-2">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#184f9c] to-[#2aa8f2] text-white px-8 py-3 font-semibold hover:scale-[1.03] active:scale-[0.99] transition-all duration-300 reach-glow"
+                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-gradient-to-r from-[#184f9c] to-[#2aa8f2] text-white px-8 py-3 font-semibold hover:scale-[1.03] active:scale-[0.99] transition-all duration-300 reach-glow"
               >
                 Start Your Project
               </Link>
               <Link
                 to="/training"
-                className="inline-flex items-center justify-center rounded-full border border-[#0049ad] text-[#0049ad] px-8 py-3 font-semibold hover:bg-[#eef7ff] transition-colors"
+                className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[#0049ad] text-[#0049ad] px-8 py-3 font-semibold hover:bg-[#eef7ff] transition-colors"
               >
                 Explore Training
               </Link>
