@@ -16,6 +16,21 @@ const products = [
     description:
       "Private and consortium blockchain implementations for traceability, compliance, and transparent operations.",
   },
+  {
+    title: "Blockchain Solutions",
+    description:
+      "End-to-end blockchain platforms with wallet integration, decentralized workflows, and reliable deployment support.",
+  },
+  {
+    title: "ERP Solutions",
+    description:
+      "Custom ERP systems that streamline finance, inventory, operations, and reporting across growing business teams.",
+  },
+  {
+    title: "On Demand Services",
+    description:
+      "Scalable on-demand platforms for bookings, delivery management, user coordination, and real-time service operations.",
+  },
 ];
 
 export function Products() {
@@ -34,10 +49,6 @@ export function Products() {
 
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px]">
-          <h2 className="font-['Poppins:ExtraBold',sans-serif] text-[#002548] text-[36px] lg:text-[48px] text-center mb-12">
-            Blockchain Solutions
-          </h2>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
               <article
