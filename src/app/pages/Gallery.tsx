@@ -5,7 +5,11 @@ const updateImages = Object.entries(
   })
 )
   .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, src]) => src as string);
+  .map(([path, src]) => {
+    const fileName = path.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "gallery-image";
+    const alt = fileName.replace(/[-_]+/g, " ");
+    return { src: src as string, alt };
+  });
 
 export function Updates() {
   return (
@@ -32,14 +36,14 @@ export function Updates() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {updateImages.map((image, index) => (
+            {updateImages.map((image) => (
               <div
-                key={index}
+                key={image.src}
                 className="group overflow-hidden rounded-2xl border border-[#dbe9f7] bg-white shadow-[0_8px_24px_rgba(10,63,130,0.08)] transition-all duration-300 hover:shadow-[0_14px_30px_rgba(10,63,130,0.16)]"
               >
                 <img
-                  src={image}
-                  alt="Training session update"
+                  src={image.src}
+                  alt={image.alt}
                   className="w-full h-[240px] object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                 />
