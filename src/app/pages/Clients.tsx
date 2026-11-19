@@ -5,7 +5,11 @@ const clientLogos = Object.entries(
   })
 )
   .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, src]) => src as string);
+  .map(([path, src]) => {
+    const fileName = path.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "client-logo";
+    const alt = fileName.replace(/-logo$/i, "").replace(/[-_]+/g, " ");
+    return { src: src as string, alt };
+  });
 
 export function Clients() {
   return (
@@ -24,14 +28,14 @@ export function Clients() {
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-[120px]">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
-            {clientLogos.map((src, i) => (
+            {clientLogos.map((logo) => (
               <div
-                key={i}
+                key={logo.src}
                 className="h-28 rounded-xl border border-[#dbe8f8] bg-white p-4 flex items-center justify-center shadow-sm"
               >
                 <img
-                  src={src}
-                  alt={`Client logo ${i + 1}`}
+                  src={logo.src}
+                  alt={logo.alt}
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
