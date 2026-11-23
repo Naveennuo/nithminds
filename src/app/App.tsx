@@ -18,6 +18,7 @@ import { Updates } from './pages/Gallery';
 import { Clients } from './pages/Clients';
 import { Products } from './pages/Products';
 import { SocialMedia } from './pages/SocialMedia';
+import { News } from './pages/News';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="updates" element={<Updates />} />
           <Route path="products" element={<Products />} />
           <Route path="social-media" element={<SocialMedia />} />
+          <Route path="news" element={<News />} />
           
           {/* Services Routes */}
           <Route path="services">

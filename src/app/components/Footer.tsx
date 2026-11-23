@@ -28,6 +28,7 @@ const SOCIAL = [
 
 const QUICK = [
   { name: "About Us", path: "/about-us" },
+  { name: "News", path: "/news" },
   { name: "Services", path: "/services/website-development" },
   { name: "Training", path: "/training" },
   { name: "Products", path: "/products" },

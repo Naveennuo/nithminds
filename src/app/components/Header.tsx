@@ -12,6 +12,7 @@ const MENU = {
     { name: "About Us", path: "/about-us" },
     { name: "Contact Us", path: "/contact" },
     { name: "Social Media", path: "/social-media" },
+    { name: "News", path: "/news" },
   ],
   services: [
     { name: "Website Development", path: "/services/website-development" },
